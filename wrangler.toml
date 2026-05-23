@@ -1,0 +1,8 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "ifelse-work-blog"
+compatibility_date = "2026-05-23"
+pages_build_output_dir = "dist"
+
+# 环境变量（根据需要配置）
+# [vars]
+# DOMAIN = "ifelse.work"
