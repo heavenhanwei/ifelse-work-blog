@@ -8,7 +8,7 @@
         <ul class="nav-links">
           <li><router-link to="/">首页</router-link></li>
           <li><router-link to="/archive" class="active">归档</router-link></li>
-          <li><a href="/about">关于</a></li>
+          <li><router-link to="/about">关于</router-link></li>
         </ul>
       </nav>
       <p class="tagline">代码 · 思考 · 分享</p>
@@ -77,7 +77,7 @@ const groupedPosts = computed(() => {
 })
 </script>
 
-<style scoped>
+<style>
 .blog-container { max-width: 800px; margin: 0 auto; padding: 2rem 1.25rem; min-height: 100vh; display: flex; flex-direction: column; }
 .blog-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0; }
 .logo h1 { font-size: 2.2rem; font-weight: 700; color: #1a1a1a; transition: color .2s; margin-bottom: 0; }
