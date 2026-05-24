@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ifelse.work/sitemap.xml
+
+# Crawl-delay for polite crawling (optional)
+Crawl-delay: 1
