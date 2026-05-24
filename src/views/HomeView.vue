@@ -6,9 +6,9 @@
           <h1>ifelse<span class="dot">.</span>work</h1>
         </a>
         <ul class="nav-links">
-          <li><router-link to="/">首页</router-link></li>
-          <li><a href="/archive">归档</a></li>
-          <li><a href="/about">关于</a></li>
+          <li><router-link to="/" class="active">首页</router-link></li>
+          <li><router-link to="/archive">归档</router-link></li>
+          <li><router-link to="/about">关于</router-link></li>
         </ul>
       </nav>
       <p class="tagline">代码 · 思考 · 分享</p>

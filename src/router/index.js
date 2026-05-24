@@ -7,6 +7,16 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
+    path: '/archive',
+    name: 'Archive',
+    component: () => import('../views/ArchiveView.vue')
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/AboutView.vue')
+  },
+  {
     path: '/posts/:slug',
     name: 'Post',
     component: () => import('../views/PostView.vue')
