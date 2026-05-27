@@ -1,7 +1,7 @@
 {
   "name": "ifelse-work-blog",
   "version": "1.0.0",
-  "description": "博客页面 - ifelse.work",
+  "description": "Tech blog by ifelse.work",
   "type": "module",
   "scripts": {
     "dev": "vite",
