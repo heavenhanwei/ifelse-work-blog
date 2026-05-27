@@ -1,17 +1,17 @@
 <template>
   <div class="blog-container">
     <header class="blog-header" role="banner">
-      <nav aria-label="主导航">
-        <router-link to="/" class="logo" aria-label="ifelse.work 首页">
+      <nav aria-label="Main navigation">
+        <router-link to="/" class="logo" aria-label="ifelse.work Home">
           <h1>ifelse<span class="dot">.</span>work</h1>
         </router-link>
         <ul class="nav-links">
-          <li><router-link to="/">首页</router-link></li>
-          <li><router-link to="/archive">归档</router-link></li>
-          <li><router-link to="/about" class="active">关于</router-link></li>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/archive">Archive</router-link></li>
+          <li><router-link to="/about" class="active">About</router-link></li>
         </ul>
       </nav>
-      <p class="tagline">代码 · 思考 · 分享</p>
+      <p class="tagline">Code · Thoughts · Sharing</p>
     </header>
 
     <main class="about-main" role="main">
@@ -24,45 +24,45 @@
               <text x="60" y="80" text-anchor="middle" font-size="28" fill="#0066cc" font-weight="bold">else</text>
             </svg>
           </div>
-          <h2>一暐的笔记本</h2>
-          <p class="about-subtitle">专注云服务、AI 技术与商业分析</p>
-          <p class="about-desc">为独立开发者和创业团队提供有价值的洞察。</p>
+          <h2>Yiwei's Notebook</h2>
+          <p class="about-subtitle">Focusing on Cloud Services, AI Technology & Business Analysis</p>
+          <p class="about-desc">Delivering valuable insights for indie developers and startup teams.</p>
         </div>
 
         <div class="about-content">
-          <h3>关于这个博客</h3>
-          <p>ifelse.work 是一个技术博客，记录编程经验、技术思考和商业观察。</p>
-          <p>名字来自编程中最基础的控制流结构 —— <code>if / else</code>。每一个技术决策、每一次商业选择，本质上都是一次 <code>if / else</code>。这里记录的是这些选择背后的思考过程。</p>
+          <h3>About This Blog</h3>
+          <p>ifelse.work is a tech blog documenting coding experience, technical thoughts, and business observations.</p>
+          <p>The name comes from the most fundamental control flow structure in programming — <code>if / else</code>. Every technical decision, every business choice, is essentially an <code>if / else</code>. This is where we record the thinking process behind those choices.</p>
         </div>
 
         <div class="about-content">
-          <h3>关注领域</h3>
+          <h3>Areas of Focus</h3>
           <div class="topics-grid">
             <div class="topic-card">
               <span class="topic-emoji">☁️</span>
-              <h4>云服务</h4>
-              <p>AWS、阿里云、Cloudflare 等云平台的深度使用经验和商业分析</p>
+              <h4>Cloud Services</h4>
+              <p>In-depth usage experience and business analysis of AWS, Alibaba Cloud, Cloudflare, and more</p>
             </div>
             <div class="topic-card">
               <span class="topic-emoji">🤖</span>
-              <h4>AI 技术</h4>
-              <p>大模型应用、Agent 开发、AI 工具链的实战经验</p>
+              <h4>AI Technology</h4>
+              <p>Hands-on experience with LLM applications, Agent development, and AI toolchains</p>
             </div>
             <div class="topic-card">
               <span class="topic-emoji">💼</span>
-              <h4>商业分析</h4>
-              <p>技术驱动的商业趋势、独立开发者经济、一人公司实践</p>
+              <h4>Business Analysis</h4>
+              <p>Tech-driven business trends, indie developer economy, and one-person company practices</p>
             </div>
             <div class="topic-card">
               <span class="topic-emoji">💻</span>
-              <h4>全栈开发</h4>
-              <p>前端、后端、DevOps 的最佳实践和踩坑记录</p>
+              <h4>Full-Stack Development</h4>
+              <p>Best practices and lessons learned from frontend, backend, and DevOps</p>
             </div>
           </div>
         </div>
 
         <div class="about-content">
-          <h3>联系方式</h3>
+          <h3>Contact</h3>
           <div class="contact-links">
             <a href="https://github.com/heavenhanwei" target="_blank" rel="noopener noreferrer" class="contact-link">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 2.947-1.104.882.247 1.832.367 2.768.367 2.936 0 4.896-1.969 5.532-3.714 1.033 3.128 1.502 3.416 1.502 3.416.879 1.503 3.629 1.087 4.524.823.141-.962.547-1.622.995-1.996-3.485-.396-7.163-1.742-7.163-5.532 0-1.223.437-2.222 1.153-2.999-.115-.283-.499-1.424.11-2.966 0 0 2.079-.662 6.807 1.479 1.962-.546 4.056-.822 6.152-.852 2.12.012 4.206.282 6.25.84z"/></svg>
@@ -70,11 +70,11 @@
             </a>
             <a href="https://xiaohongshu.com" target="_blank" rel="noopener noreferrer" class="contact-link">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm4 0h-2v-6h2v6zm-2-8c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
-              小红书
+              Xiaohongshu
             </a>
             <a href="https://weixin.qq.com" target="_blank" rel="noopener noreferrer" class="contact-link">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.504c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.49c-.012.046-.02.092-.02.138 0 .375.292.684.675.684a.735.735 0 00.39-.118l1.564-1.008a.734.734 0 01.39-.118c.087 0 .173.014.255.04A9.14 9.14 0 008.691 17.3c.17 0 .339-.005.506-.015.214-.013.41-.134.524-.313a.614.614 0 00.046-.622.588.588 0 01-.046-.262c0-.33.25-.6.575-.632.177-.018.356-.027.536-.027 2.09 0 3.997-.833 5.356-2.184 1.426-1.415 2.308-3.354 2.308-5.495 0-4.028-3.891-7.316-8.705-7.316z"/></svg>
-              微信公众号
+              WeChat
             </a>
           </div>
         </div>
@@ -83,7 +83,7 @@
 
     <footer class="blog-footer" role="contentinfo">
       <div class="footer-links">
-        <a href="/sitemap.xml">站点地图</a>
+        <a href="/sitemap.xml">Sitemap</a>
         <span class="separator">·</span>
         <a href="https://github.com" rel="noopener noreferrer" target="_blank">GitHub</a>
       </div>

@@ -1,14 +1,14 @@
 <template>
   <div class="blog-container">
     <header class="blog-header" role="banner">
-      <nav aria-label="主导航">
-        <router-link to="/" class="logo" aria-label="ifelse.work 首页">
+      <nav aria-label="Main navigation">
+        <router-link to="/" class="logo" aria-label="ifelse.work Home">
           <h1>ifelse<span class="dot">.</span>work</h1>
         </router-link>
         <ul class="nav-links">
-          <li><router-link to="/">首页</router-link></li>
-          <li><router-link to="/archive">归档</router-link></li>
-          <li><router-link to="/about">关于</router-link></li>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/archive">Archive</router-link></li>
+          <li><router-link to="/about">About</router-link></li>
         </ul>
       </nav>
     </header>
@@ -20,7 +20,7 @@
           <div class="article-meta">
             <time :datetime="post.date" itemprop="datePublished">{{ formatDate(post.date) }}</time>
             <span class="separator">·</span>
-            <span>{{ post.readTime }}阅读</span>
+            <span>{{ post.readTime }} read</span>
             <span class="separator">·</span>
             <span itemprop="author">{{ post.author }}</span>
           </div>
@@ -34,13 +34,13 @@
         <footer class="article-footer">
           <div class="author-card">
             <div class="author-info">
-              <h3>关于作者</h3>
-              <p><strong>一暐的笔记本</strong></p>
-              <p>专注云服务、AI 技术与商业分析，为独立开发者和创业团队提供有价值的洞察。</p>
+              <h3>About the Author</h3>
+              <p><strong>Yiwei's Notebook</strong></p>
+              <p>Focusing on cloud services, AI technology, and business analysis — delivering valuable insights for indie developers and startup teams.</p>
             </div>
           </div>
           <div class="back-link">
-            <router-link to="/">← 返回首页</router-link>
+            <router-link to="/">← Back to Home</router-link>
           </div>
         </footer>
       </article>
@@ -48,9 +48,9 @@
 
     <main class="article-main" v-else>
       <div class="not-found">
-        <h2>文章未找到</h2>
-        <p>抱歉，你访问的文章不存在或已被删除。</p>
-        <router-link to="/">返回首页</router-link>
+        <h2>Article Not Found</h2>
+        <p>Sorry, the article you're looking for doesn't exist or has been removed.</p>
+        <router-link to="/">Back to Home</router-link>
       </div>
     </main>
 
@@ -102,7 +102,7 @@ const renderedContent = computed(() => {
 
 function formatDate(dateStr) {
   const d = new Date(dateStr + 'T00:00:00+08:00')
-  return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
 onMounted(() => {

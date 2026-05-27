@@ -1,17 +1,17 @@
 <template>
   <div class="blog-container">
     <header class="blog-header" role="banner">
-      <nav aria-label="主导航">
-        <a href="/" class="logo" aria-label="ifelse.work 首页">
+      <nav aria-label="Main navigation">
+        <a href="/" class="logo" aria-label="ifelse.work Home">
           <h1>ifelse<span class="dot">.</span>work</h1>
         </a>
         <ul class="nav-links">
-          <li><router-link to="/" class="active">首页</router-link></li>
-          <li><router-link to="/archive">归档</router-link></li>
-          <li><router-link to="/about">关于</router-link></li>
+          <li><router-link to="/" class="active">Home</router-link></li>
+          <li><router-link to="/archive">Archive</router-link></li>
+          <li><router-link to="/about">About</router-link></li>
         </ul>
       </nav>
-      <p class="tagline">代码 · 思考 · 分享</p>
+      <p class="tagline">Code · Thoughts · Sharing</p>
     </header>
     
     <main class="blog-main" role="main">
@@ -21,13 +21,13 @@
         </h2>
         <time :datetime="post.date" itemprop="datePublished">{{ formatDate(post.date) }}</time>
         <p itemprop="description">{{ post.excerpt }}</p>
-        <router-link :to="`/posts/${post.slug}`" class="read-more" :aria-label="'阅读更多：' + post.title">阅读全文 →</router-link>
+        <router-link :to="`/posts/${post.slug}`" class="read-more" :aria-label="'Read more: ' + post.title">Read More →</router-link>
       </article>
     </main>
     
     <footer class="blog-footer" role="contentinfo">
       <div class="footer-links">
-        <a href="/sitemap.xml">站点地图</a>
+        <a href="/sitemap.xml">Sitemap</a>
         <span class="separator">·</span>
         <a href="https://github.com" rel="noopener noreferrer" target="_blank">GitHub</a>
       </div>
@@ -44,7 +44,7 @@ const currentYear = computed(() => new Date().getFullYear())
 
 function formatDate(dateStr) {
   const d = new Date(dateStr + 'T00:00:00+08:00')
-  return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 </script>
 

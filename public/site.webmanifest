@@ -1,7 +1,7 @@
 {
   "name": "ifelse.work",
   "short_name": "ifelse.work",
-  "description": "技术博客 - 代码 · 思考 · 分享",
+  "description": "Tech Blog - Code · Thoughts · Sharing",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1a1a2e",

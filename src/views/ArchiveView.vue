@@ -1,17 +1,17 @@
 <template>
   <div class="blog-container">
     <header class="blog-header" role="banner">
-      <nav aria-label="主导航">
-        <router-link to="/" class="logo" aria-label="ifelse.work 首页">
+      <nav aria-label="Main navigation">
+        <router-link to="/" class="logo" aria-label="ifelse.work Home">
           <h1>ifelse<span class="dot">.</span>work</h1>
         </router-link>
         <ul class="nav-links">
-          <li><router-link to="/">首页</router-link></li>
-          <li><router-link to="/archive" class="active">归档</router-link></li>
-          <li><router-link to="/about">关于</router-link></li>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/archive" class="active">Archive</router-link></li>
+          <li><router-link to="/about">About</router-link></li>
         </ul>
       </nav>
-      <p class="tagline">代码 · 思考 · 分享</p>
+      <p class="tagline">Code · Thoughts · Sharing</p>
     </header>
 
     <main class="archive-main" role="main">
@@ -22,12 +22,12 @@
           <line x1="7" y1="15" x2="7" y2="15"/>
           <line x1="11" y1="15" x2="13" y2="15"/>
         </svg>
-        文章归档
+        Archive
       </h2>
-      <p class="archive-count">共 {{ totalPosts }} 篇文章</p>
+      <p class="archive-count">{{ totalPosts }} articles in total</p>
 
       <div v-for="(group, year) in groupedPosts" :key="year" class="year-group">
-        <h3 class="year-header">{{ year }} 年 <span class="year-count">{{ group.length }} 篇</span></h3>
+        <h3 class="year-header">{{ year }} <span class="year-count">{{ group.length }} articles</span></h3>
         <ul class="post-list">
           <li v-for="post in group" :key="post.slug" class="post-item">
             <router-link :to="`/posts/${post.slug}`" class="post-link">
@@ -44,7 +44,7 @@
 
     <footer class="blog-footer" role="contentinfo">
       <div class="footer-links">
-        <a href="/sitemap.xml">站点地图</a>
+        <a href="/sitemap.xml">Sitemap</a>
         <span class="separator">·</span>
         <a href="https://github.com" rel="noopener noreferrer" target="_blank">GitHub</a>
       </div>
@@ -62,7 +62,7 @@ const totalPosts = computed(() => posts.length)
 
 function formatShortDate(dateStr) {
   const d = new Date(dateStr + 'T00:00:00+08:00')
-  return d.toLocaleDateString('zh-CN', { month: 'numeric', day: 'numeric' })
+  return d.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' })
 }
 
 const groupedPosts = computed(() => {
