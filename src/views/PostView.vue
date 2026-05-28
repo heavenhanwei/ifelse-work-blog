@@ -1,62 +1,40 @@
 <template>
-  <div class="blog-container">
-    <header class="blog-header" role="banner">
-      <nav aria-label="Main navigation">
-        <router-link to="/" class="logo" aria-label="ifelse.work Home">
-          <h1>ifelse<span class="dot">.</span>work</h1>
-        </router-link>
-        <ul class="nav-links">
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/archive">Archive</router-link></li>
-          <li><router-link to="/about">About</router-link></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main class="article-main" role="main" v-if="post">
-      <article class="post-article" itemscope itemtype="https://schema.org/BlogPosting">
-        <header class="article-header">
-          <h1 itemprop="headline">{{ post.title }}</h1>
-          <div class="article-meta">
-            <time :datetime="post.date" itemprop="datePublished">{{ formatDate(post.date) }}</time>
-            <span class="separator">·</span>
-            <span>{{ post.readTime }} read</span>
-            <span class="separator">·</span>
-            <span itemprop="author">{{ post.author }}</span>
+  <div class="post-view container container--narrow" v-if="post">
+    <article class="post-article" itemscope itemtype="https://schema.org/BlogPosting">
+      <header class="article-header">
+        <h1 itemprop="headline">{{ post.title }}</h1>
+        <div class="article-meta">
+          <time :datetime="post.date" itemprop="datePublished">{{ formatDate(post.date) }}</time>
+          <span class="meta-sep">·</span>
+          <span>{{ post.readTime }} read</span>
+          <span class="meta-sep">·</span>
+          <span itemprop="author">{{ post.author }}</span>
+        </div>
+        <div class="article-tags" v-if="post.tags">
+          <span class="tag" v-for="tag in post.tags" :key="tag">{{ tag }}</span>
+        </div>
+      </header>
+      <div class="article-content" itemprop="articleBody" v-html="renderedContent"></div>
+      <footer class="article-footer">
+        <div class="author-card">
+          <div class="author-info">
+            <h3>About the Author</h3>
+            <p><strong>Yiwei's Notebook</strong></p>
+            <p>Focusing on cloud services, AI technology, and business analysis — delivering valuable insights for indie developers and startup teams.</p>
           </div>
-          <div class="article-tags" v-if="post.tags">
-            <span class="tag" v-for="tag in post.tags" :key="tag">#{{ tag }}</span>
-          </div>
-        </header>
-
-        <div class="article-content" itemprop="articleBody" v-html="renderedContent"></div>
-
-        <footer class="article-footer">
-          <div class="author-card">
-            <div class="author-info">
-              <h3>About the Author</h3>
-              <p><strong>Yiwei's Notebook</strong></p>
-              <p>Focusing on cloud services, AI technology, and business analysis — delivering valuable insights for indie developers and startup teams.</p>
-            </div>
-          </div>
-          <div class="back-link">
-            <router-link to="/">← Back to Home</router-link>
-          </div>
-        </footer>
-      </article>
-    </main>
-
-    <main class="article-main" v-else>
-      <div class="not-found">
-        <h2>Article Not Found</h2>
-        <p>Sorry, the article you're looking for doesn't exist or has been removed.</p>
-        <router-link to="/">Back to Home</router-link>
-      </div>
-    </main>
-
-    <footer class="blog-footer" role="contentinfo">
-      <p>© {{ currentYear }} ifelse.work</p>
-    </footer>
+        </div>
+        <div class="back-link">
+          <router-link to="/">← Back to Home</router-link>
+        </div>
+      </footer>
+    </article>
+  </div>
+  <div class="post-view container container--narrow" v-else>
+    <div class="not-found">
+      <h2>Article Not Found</h2>
+      <p>Sorry, the article you're looking for doesn't exist or has been removed.</p>
+      <router-link to="/">Back to Home</router-link>
+    </div>
   </div>
 </template>
 
@@ -69,7 +47,6 @@ import { getPost } from '../data/posts.js'
 const route = useRoute()
 const slug = route.params.slug
 const post = getPost(slug)
-const currentYear = computed(() => new Date().getFullYear())
 
 const marked = new Marked({
   gfm: true,
@@ -89,7 +66,6 @@ function escapeHtml(text) {
 
 const renderedContent = computed(() => {
   if (!post) return ''
-  // Remove YAML-like frontmatter if present
   let content = post.content
   if (content.startsWith('---')) {
     const endIdx = content.indexOf('---', 3)
@@ -107,7 +83,6 @@ function formatDate(dateStr) {
 
 onMounted(() => {
   nextTick(() => {
-    // Process table of contents links
     const headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3')
     headings.forEach((h, i) => {
       if (!h.id) h.id = 'heading-' + i
@@ -117,71 +92,140 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.blog-container { max-width: 800px; margin: 0 auto; padding: 2rem 1.25rem; min-height: 100vh; display: flex; flex-direction: column; }
-.blog-header { margin-bottom: 3rem; }
-.logo h1 { font-size: 1.6rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0; }
-.dot { color: #0066cc; }
-.nav-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
-.nav-links a { color: #666; font-size: .95rem; font-weight: 500; padding: .25rem 0; border-bottom: 2px solid transparent; transition: all .2s; }
-.nav-links a:hover { color: #0066cc; border-bottom-color: #0066cc; }
-
-.article-main { flex: 1; }
+.post-view { padding-top: 2rem; padding-bottom: 3rem; }
 .post-article { max-width: 720px; margin: 0 auto; }
 
-.article-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0; }
-.article-header h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; color: #1a1a1a; margin-bottom: 1rem; }
-.article-meta { display: flex; align-items: center; gap: .5rem; color: #888; font-size: .9rem; flex-wrap: wrap; }
-.article-meta time { font-weight: 500; }
-.separator { color: #ccc; }
-.article-tags { margin-top: 1rem; display: flex; gap: .5rem; flex-wrap: wrap; }
-.tag { display: inline-block; background: #f0f0f0; color: #666; padding: .2rem .6rem; border-radius: 4px; font-size: .8rem; }
+.article-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--color-border); }
+.article-header h1 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+.meta-sep { color: var(--color-border); }
+.article-tags { margin-top: 1rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.tag {
+  display: inline-block;
+  background: rgba(230, 57, 70, 0.1);
+  color: var(--color-red);
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
 
 /* Article content typography */
-.article-content { font-size: 1.05rem; line-height: 1.8; color: #333; }
-.article-content :deep(h1) { font-size: 1.8rem; font-weight: 700; margin: 2.5rem 0 1rem; color: #1a1a1a; border-bottom: 2px solid #e0e0e0; padding-bottom: .5rem; }
-.article-content :deep(h2) { font-size: 1.5rem; font-weight: 600; margin: 2rem 0 .75rem; color: #1a1a1a; }
-.article-content :deep(h3) { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 .5rem; color: #1a1a1a; }
+.article-content { font-size: 1.05rem; line-height: 1.8; color: var(--color-text-primary); }
+.article-content :deep(h1) {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+.article-content :deep(h2) {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2rem 0 0.75rem;
+  color: var(--color-text-primary);
+}
+.article-content :deep(h3) {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--color-text-primary);
+}
 .article-content :deep(p) { margin-bottom: 1.25rem; }
-.article-content :deep(a) { color: #0066cc; text-decoration: underline; text-underline-offset: 2px; }
-.article-content :deep(a:hover) { color: #0052a3; }
-.article-content :deep(strong) { font-weight: 600; color: #1a1a1a; }
+.article-content :deep(a) { color: var(--color-gold); text-decoration: underline; text-underline-offset: 2px; }
+.article-content :deep(a:hover) { color: var(--color-gold-light); }
+.article-content :deep(strong) { font-weight: 600; color: var(--color-text-primary); }
 .article-content :deep(em) { font-style: italic; }
 .article-content :deep(ul), .article-content :deep(ol) { margin-bottom: 1.25rem; padding-left: 1.5rem; }
-.article-content :deep(li) { margin-bottom: .5rem; line-height: 1.7; }
-.article-content :deep(blockquote) { margin: 1.5rem 0; padding: 1rem 1.25rem; background: #f8f9fa; border-left: 4px solid #0066cc; border-radius: 0 8px 8px 0; color: #555; }
-.article-content :deep(hr) { border: none; height: 2px; background: #e0e0e0; margin: 2.5rem 0; border-radius: 1px; }
+.article-content :deep(li) { margin-bottom: 0.5rem; line-height: 1.7; }
+.article-content :deep(blockquote) {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--color-bg-card);
+  border-left: 3px solid var(--color-red);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--color-text-secondary);
+}
+.article-content :deep(hr) {
+  border: none;
+  height: 1px;
+  background: var(--color-border);
+  margin: 2.5rem 0;
+}
 
 /* Code blocks */
 .article-content :deep(.code-block) {
-  background: #1e1e1e; color: #d4d4d4; padding: 1.25rem; border-radius: 8px;
-  overflow-x: auto; margin: 1.5rem 0; font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
-  font-size: .9rem; line-height: 1.6;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
-.article-content :deep(code) { background: #f5f5f5; padding: .15rem .4rem; border-radius: 4px; font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: .9em; color: #e83e8c; }
+.article-content :deep(code) {
+  background: var(--color-bg-card-hover);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--color-gold);
+}
 .article-content :deep(.code-block code) { background: none; padding: 0; color: inherit; font-size: inherit; }
 
 /* Tables */
-.article-content :deep(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .95rem; }
-.article-content :deep(th) { background: #f5f5f5; font-weight: 600; text-align: left; padding: .75rem 1rem; border-bottom: 2px solid #e0e0e0; }
-.article-content :deep(td) { padding: .75rem 1rem; border-bottom: 1px solid #e8e8e8; }
+.article-content :deep(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+.article-content :deep(th) {
+  background: var(--color-bg-card);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.article-content :deep(td) { padding: 0.75rem 1rem; border-bottom: 1px solid var(--color-border-light); }
 
 /* Article footer */
-.article-footer { margin-top: 4rem; padding-top: 2rem; border-top: 2px solid #e0e0e0; }
-.author-card { background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; }
-.author-info h3 { font-size: 1rem; margin-bottom: .5rem; color: #666; }
-.author-info p { margin-bottom: .25rem; font-size: .95rem; color: #555; }
+.article-footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+.author-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 2rem;
+}
+.author-info h3 { font-size: 0.85rem; margin-bottom: 0.5rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.author-info p { margin-bottom: 0.25rem; font-size: 0.95rem; color: var(--color-text-secondary); }
 .back-link { text-align: center; }
-.back-link a { color: #0066cc; font-weight: 500; }
+.back-link a { color: var(--color-gold); font-weight: 500; }
+.back-link a:hover { text-decoration: underline; }
 
 .not-found { text-align: center; padding: 4rem 0; }
-.not-found h2 { margin-bottom: 1rem; }
-.not-found a { color: #0066cc; }
-
-.blog-footer { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e0e0e0; color: #888; font-size: .9rem; }
+.not-found h2 { margin-bottom: 1rem; color: var(--color-text-primary); }
+.not-found a { color: var(--color-gold); }
+.not-found a:hover { text-decoration: underline; }
 
 @media (max-width: 640px) {
   .article-header h1 { font-size: 1.5rem; }
-  .article-content :deep(h1) { font-size: 1.5rem; }
-  .article-content :deep(h2) { font-size: 1.3rem; }
+  .article-content :deep(h1) { font-size: 1.4rem; }
+  .article-content :deep(h2) { font-size: 1.2rem; }
 }
 </style>

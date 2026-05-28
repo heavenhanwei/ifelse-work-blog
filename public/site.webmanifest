@@ -1,12 +1,18 @@
 {
-  "name": "ifelse.work",
+  "name": "Exploring China Tech | ifelse.work",
   "short_name": "ifelse.work",
-  "description": "Tech Blog - Code · Thoughts · Sharing",
+  "description": "Exploring the frontier of China's tech innovation — AI, semiconductors, new energy, space exploration and more.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a1a2e",
-  "theme_color": "#1a1a2e",
+  "background_color": "#0a0e27",
+  "theme_color": "#0a0e27",
   "icons": [
+    {
+      "src": "/favicon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
     {
       "src": "/favicon.svg",
       "sizes": "any",

@@ -1,7 +1,18 @@
 import foundersPlaybookEnglishContent from '../../content/posts/founders-playbook-english.md?raw'
 import personalDeveloperContent from '../../content/posts/personal-developer-cloud-era.md?raw'
+import chinaTechContent from '../../content/posts/china-tech-exploration.md?raw'
 
 export const posts = [
+  {
+    slug: 'china-tech-exploration',
+    title: 'Exploring China Tech: Innovation Frontiers in 2026',
+    date: '2026-05-28',
+    excerpt: 'From large language models to semiconductor breakthroughs, from solar power to space exploration — China\'s tech innovation is rewriting the global landscape.',
+    tags: ['AI', 'Semiconductors', 'New Energy', 'Space'],
+    author: 'Yiwei',
+    readTime: '10 min',
+    content: chinaTechContent
+  },
   {
     slug: 'founders-playbook-english',
     title: 'The Founder\'s Playbook: Building an AI-Native Startup',
